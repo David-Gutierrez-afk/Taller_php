@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taller PHP - Menú Principal</title>
-    <!-- Cumpliendo la regla: CSS externo, cero estilos en línea -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,7 +19,6 @@
     </header>
 
     <main class="clearfix">
-        <!-- Implementación de técnica FLOAT mediante la clase 'float-box' -->
         <aside class="float-box">
             <h2>Acerca del Proyecto</h2>
             <p>Este proyecto implementa HTML5 puro, CSS3 externo (Grid, Flex, Float) y lógica de programación en PHP Orientado a Objetos (POO).</p>
@@ -28,10 +26,7 @@
 
         <section>
             <h1>Aplicaciones Disponibles</h1>
-            <!-- El selector de hermano adyacente (+) en CSS aplicará estilos a este párrafo -->
             <p>Seleccione una aplicación para interactuar con el sistema.</p>
-
-            <!-- Implementación de técnica GRID -->
             <div class="grid-container">
                 <article class="card">
                     <h3>1. Acrónimos</h3>
