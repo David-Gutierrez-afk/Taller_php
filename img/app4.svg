@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240" width="440" height="240">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#3b0764"/>
+    </linearGradient>
+  </defs>
+  <rect width="440" height="240" fill="url(#bg4)"/>
+  <rect x="45" y="34" width="350" height="114" rx="14" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+  <circle cx="185" cy="91" r="42" fill="#38bdf8" fill-opacity="0.45" stroke="#38bdf8" stroke-width="2.5"/>
+  <circle cx="255" cy="91" r="42" fill="#f43f5e" fill-opacity="0.45" stroke="#f43f5e" stroke-width="2.5"/>
+  <text x="160" y="97" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">A</text>
+  <text x="220" y="96" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#fde047">A∩B</text>
+  <text x="280" y="97" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">B</text>
+  <text x="220" y="182" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="1.5">4. CONJUNTOS A Y B</text>
+  <text x="220" y="208" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#94a3b8">Unión, Intersección y Diferencias</text>
+</svg>

@@ -1,99 +1,546 @@
-/* Selector Universal (*) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+/* --- 1. SELECTORES REQUERIDOS (*, ,, >, +, ~) --- */
+
+/* selector universal (*): quita los márgenes y espacios que trae el navegador por defecto */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Layout FLEXBOX para la barra de navegación */
-nav {
-    background-color: #333;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* selector de agrupación (,): le pone la misma fuente y color morado a todos los títulos */
+h1, h2, h3 {
+    color: #818cf8;
+    font-family: 'Orbitron', 'Segoe UI', sans-serif;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
 }
 
-/* Selector de Hijo Directo (>) */
+/* selector de hijo directo (>): afecta solo a la lista ul que está directamente dentro de nav */
 nav > ul {
     list-style: none;
+    background: linear-gradient(90deg, #2A438C 0%, #111827 12%, #111827 88%, #2A438C 100%);
+    border-bottom: 2px solid #5B5CE6;
+}
+
+/* selector de hermano adyacente (+): le pone letra cursiva al párrafo que va justo debajo de un h2 */
+h2 + p {
+    color: #94a3b8;
+    font-style: italic;
+    margin-bottom: 24px;
+    font-size: 0.98rem;
+}
+
+/* selector de hermano general (~): pone una línea entre secciones y da estilo a los inputs debajo de un label */
+section ~ section {
+    border-top: 2px solid #2e364f;
+    padding-top: 30px;
+    margin-top: 35px;
+}
+
+label ~ input, label ~ select {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    border: 2px solid #3b4262;
+    border-radius: 8px;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-size: 1rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+label ~ input:focus, label ~ select:focus {
+    outline: none;
+    border-color: #5B5CE6;
+    box-shadow: 0 0 12px rgba(91, 92, 230, 0.45);
+}
+
+/* --- 2. TÉCNICAS DE LAYOUT (FLEX, GRID, FLOAT) --- */
+
+/* layout 1 - flexbox: acomoda los botones de la barra de navegación en fila y centrados */
+.flex-nav {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 20px;
 }
 
-nav > ul > li > a {
-    color: white;
+.flex-nav li a {
+    display: inline-block;
+    color: #ffffff;
+    background-color: #090d16;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 9px 15px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Layout GRID para el menú principal de tarjetas */
+.flex-nav li a:hover {
+    background-color: #5B5CE6;
+    color: #ffffff;
+    transform: scale(1.1);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(91, 92, 230, 0.7);
+}
+
+.flex-nav li a.active {
+    background-color: #5B5CE6;
+    color: #ffffff;
+    border-color: #a5b4fc;
+    box-shadow: 0 0 18px rgba(91, 92, 230, 0.85);
+}
+
+/* layout 2 - grid: acomoda las tarjetas del menú principal en columnas que se ajustan solas */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
 }
 
-.card {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-/* Layout FLOAT para una sección específica o imagen */
-.float-box {
+/* layout 3 - float: pone el formulario a la izquierda y el historial a la derecha en la calculadora */
+.float-left {
     float: left;
-    width: 30%;
-    background-color: #e2e2e2;
-    padding: 15px;
-    margin-right: 20px;
+    width: 52%;
 }
 
-/* Limpiar el float (Clearfix) */
+.float-right {
+    float: right;
+    width: 44%;
+}
+
+/* clearfix para que la caja principal no se deforme al usar float */
 .clearfix::after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* Selector de Hermano Adyacente (+) */
-h1 + p {
-    color: #555;
-    font-weight: bold;
-    margin-bottom: 20px;
+@media (max-width: 720px) {
+    .float-left,
+    .float-right {
+        float: none;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
 
-/* Selector de Hermano General (~) */
-label ~ input {
+/* --- 3. CARRUSEL / RULETA 3D DEL INICIO --- */
+.carrusel-section {
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+/* perspective le da el efecto de profundidad 3D al contenedor */
+.carrusel-3d-wrapper {
+    position: relative;
+    width: 242px;
+    height: 132px;
+    margin: 70px auto 110px auto;
+    perspective: 1100px;
+}
+
+/* preserve-3d hace que las tarjetas giren en círculo con la animación rotar */
+.content-carrousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: rotar 28s infinite linear;
+    transform-style: preserve-3d;
+}
+
+/* pausa el giro cuando uno pasa el mouse por encima para poder darle clic fácil */
+.content-carrousel:hover {
+    animation-play-state: paused;
+}
+
+.content-carrousel figure {
+    width: 100%;
+    height: 132px;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 10px;
+    border: 2px solid #5B5CE6;
+    box-shadow: 0 0 35px 0 rgba(91, 92, 230, 0.75);
+    transition: all 300ms ease;
+    background-color: #0f172a;
+}
+
+.content-carrousel figure:hover {
+    box-shadow: 0 0 25px 2px #ffffff;
+    border-color: #ffffff;
+}
+
+/* como son 7 apps, se divide 360 grados entre 7 (cada una rota 51.43 grados más que la anterior) */
+.content-carrousel figure:nth-child(1) {
+    transform: rotateY(0deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(2) {
+    transform: rotateY(51.43deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(3) {
+    transform: rotateY(102.86deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(4) {
+    transform: rotateY(154.29deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(5) {
+    transform: rotateY(205.71deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(6) {
+    transform: rotateY(257.14deg) translateZ(310px);
+}
+.content-carrousel figure:nth-child(7) {
+    transform: rotateY(308.57deg) translateZ(310px);
+}
+
+.content-carrousel a {
     display: block;
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    height: 100%;
+}
+
+.content-carrousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 300ms ease;
+}
+
+.content-carrousel img:hover {
+    transform: scale(1.12);
+}
+
+@keyframes rotar {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes deslizarAbajo {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 4. ESTILOS GENERALES DE LA PÁGINA --- */
+body {
+    background: #05050a url('../img/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    color: #f1f5f9;
+    padding-bottom: 50px;
+}
+
+.site-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.88);
+    border-top: 4px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+    padding: 16px 20px;
+}
+
+/* círculo para la imagen del logo al lado del título */
+.contenedor_icono {
+    background: url('../img/logo.jpg') no-repeat center center;
+    background-size: cover;
+    border: 4px solid #ffffff;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(91, 92, 230, 0.65);
+    flex-shrink: 0;
+}
+
+.caja-titulo {
+    text-align: left;
+}
+
+.caja-titulo h1 {
+    color: #818cf8;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0;
+    text-shadow: 0 0 18px rgba(91, 92, 230, 0.75);
+    animation: deslizarAbajo 1s ease-out forwards;
 }
 
 .container {
-    padding: 40px;
-    max-width: 600px;
-    margin: auto;
+    max-width: 1000px;
+    width: 92%;
+    margin: 36px auto;
+    background-color: rgba(20, 22, 34, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 36px;
+    border-radius: 14px;
+    border: 2px solid #2A438C;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.75);
+}
+
+label {
+    font-weight: 600;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.card {
+    background-color: #16192b;
+    border: 2px solid #2A438C;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(91, 92, 230, 0.45);
+    border-color: #5B5CE6;
+}
+
+/* object-fit: contain evita que las imágenes de las tarjetas salgan recortadas */
+.card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 11 / 6;
+    object-fit: contain;
+    background-color: #0f172a;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    border: 1px solid #3b4262;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.card:hover .card-img {
+    transform: scale(1.04);
+}
+
+.app-banner {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    object-fit: contain;
+    background-color: #0f172a;
+    border-radius: 12px;
+    border: 2px solid #5B5CE6;
+    margin: 0 auto 24px auto;
+    box-shadow: 0 0 22px rgba(91, 92, 230, 0.4);
+    display: block;
+}
+
+.card h3 {
+    color: #a5b4fc;
+    font-size: 1.1rem;
+}
+
+.card p {
+    color: #cbd5e1;
+    margin-bottom: 18px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.tree-card {
+    margin-top: 24px;
+}
+
+.history-list {
+    text-align: left;
+    margin: 15px;
+    padding-left: 18px;
+    color: #e2e8f0;
+}
+
+.history-list li {
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #334155;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    background-color: #5B5CE6;
+    color: #ffffff;
+    border: 1px solid #818cf8;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.btn:hover {
+    background-color: #4338ca;
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(91, 92, 230, 0.65);
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    border-color: #f87171;
+    margin-top: 15px;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    box-shadow: 0 0 18px rgba(239, 68, 68, 0.6);
 }
 
 .result-box {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #d4efdf;
-    border-left: 5px solid #27ae60;
+    margin-top: 24px;
+    padding: 18px 20px;
+    background-color: rgba(6, 78, 59, 0.55);
+    border-left: 5px solid #10b981;
+    border-radius: 0 8px 8px 0;
+    color: #d1fae5;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-label ~ select {
-    display: block;
+.result-box p + p {
+    margin-top: 8px;
+}
+
+.result-divider {
+    border-top: 1px solid rgba(167, 243, 208, 0.35);
+    margin-top: 12px;
+    padding-top: 12px;
+}
+
+.alert {
+    background-color: rgba(127, 29, 29, 0.6);
+    border-left: 5px solid #ef4444;
+    color: #fecaca;
+}
+
+/* --- 5. DIBUJO DEL ÁRBOL BINARIO Y SUS RAMAS --- */
+.tree-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 30px;
+}
+
+/* el primer nodo (la raíz) no necesita espacio arriba */
+.tree-container > .tree-node {
+    padding-top: 0;
+}
+
+/* círculo de cada nodo */
+.tree-value {
+    background: linear-gradient(135deg, #5B5CE6, #9333ea);
+    color: #ffffff;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #e0e7ff;
+    font-weight: 700;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(91, 92, 230, 0.7);
+}
+
+.tree-children {
+    display: flex;
+    justify-content: center;
+    position: relative;
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #95a5a6;
-    border-radius: 4px;
+    margin-top: 10px;
+    gap: 20px;
+}
+
+/* línea pequeña que baja desde el nodo padre */
+.tree-node > .tree-children::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background-color: #818cf8;
+    z-index: 1;
+}
+
+/* líneas horizontales y verticales que conectan con los nodos hijos */
+.tree-children > .tree-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid #818cf8;
+    width: calc(50% + 10px);
+    height: 30px;
+    z-index: 1;
+}
+
+.tree-children > .tree-node::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-top: 2px solid #818cf8;
+    border-left: 2px solid #818cf8;
+    width: calc(50% + 10px);
+    height: 30px;
+    z-index: 1;
+}
+
+/* quita las líneas sobrantes en las esquinas izquierda y derecha */
+.tree-children > .tree-node:first-child::before {
+    border: none;
+}
+
+.tree-children > .tree-node:last-child::after {
+    border-top: none;
+}
+
+/* si un nodo tiene un solo hijo, dibuja solo una línea recta hacia abajo */
+.tree-children > .tree-node:only-child::before {
+    display: none;
+}
+
+.tree-children > .tree-node:only-child::after {
+    border-top: none;
+    width: 2px;
+    height: 30px;
 }

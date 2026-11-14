@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240" width="440" height="240">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="440" height="240" fill="url(#bg3)"/>
+  <rect x="45" y="34" width="350" height="114" rx="14" fill="#1e293b" stroke="#10b981" stroke-width="2"/>
+  <rect x="95" y="95" width="34" height="40" rx="4" fill="url(#bar)"/>
+  <rect x="148" y="65" width="34" height="70" rx="4" fill="url(#bar)"/>
+  <rect x="201" y="48" width="34" height="87" rx="4" fill="#38bdf8"/>
+  <rect x="254" y="75" width="34" height="60" rx="4" fill="url(#bar)"/>
+  <rect x="307" y="56" width="34" height="79" rx="4" fill="url(#bar)"/>
+  <polyline points="112,90 165,62 218,45 271,70 324,52" fill="none" stroke="#fbbf24" stroke-width="3"/>
+  <text x="220" y="182" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="1.5">3. ESTADÍSTICAS</text>
+  <text x="220" y="208" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#94a3b8">Promedio, Media y Moda</text>
+</svg>
